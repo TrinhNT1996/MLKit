@@ -1,4 +1,6 @@
 import os
+import sys
+
 from ffmpy import FFmpeg
 
 from sources.utilities.file_utilities import FileUtilities
@@ -30,7 +32,8 @@ def convert_video_to_images(file, output_dir):
         return
     file_name = file.split('/')[-1].split('.')[0]
     outputs = os.path.join(output_dir, file_name + "_img%5d.jpg")
-    ff = FFmpeg(inputs={file: None}, outputs={outputs: ['-vf', 'fps=1/0.1']})
+    ff = FFmpeg(inputs={file: None}, outputs={outputs: ['-vf', 'fps=8']})
 
     print(ff.cmd)
     ff.run()
+
